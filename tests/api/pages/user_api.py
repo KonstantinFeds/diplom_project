@@ -89,6 +89,24 @@ class User:
         self.new_username = self.update_payload["username"]
 
 
+    def get_user_login(self,common_username, common_password):
+        self.response = requests.request(method='GET',
+                                         url=f'{self.api_url}/v2/user/login',
+                                         headers=self.headers,
+                                         params={
+                                             'username': common_username,
+                                            'password': common_password
+                                         },
+                                         timeout=10)
+
+        return self.response
+
+
+    def validate_get_user_login_response(self):
+        with open(path_from_json_schemas("get_login_user.json"), encoding="utf-8") as file:
+            schema = json.load(file)
+            validate(self.response.json(), schema)
+
 
 
 

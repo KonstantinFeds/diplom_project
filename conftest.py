@@ -23,8 +23,12 @@ def user_payload():
     return payload_generate_user()
 
 
-@pytest.fixture
+@pytest.fixture()
 def common_username(user_payload):
     """Username берется из payload"""
-    return user_payload["username"]
+    return user_payload['username']
+
+@pytest.fixture()
+def common_password(user_payload):
+    return user_payload['password']
 
