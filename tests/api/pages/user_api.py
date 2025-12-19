@@ -4,6 +4,7 @@ from jsonschema import validate
 from conftest import user_payload, common_username
 from tests.api.data.generators import payload_generate_user
 from utils.file import path_from_json_schemas
+from utils.logger import response_logging, response_attaching
 
 
 
@@ -26,6 +27,8 @@ class User:
                                 json=user_payload,
                                 timeout=10)
 
+        response_logging(self.response)
+        response_attaching(self.response)
 
         return self.response
 
@@ -53,6 +56,9 @@ class User:
                                     headers=self.headers,
                                     timeout=10
                                     )
+
+        response_logging(self.response)
+        response_attaching(self.response)
 
 
         return self.response
@@ -84,6 +90,9 @@ class User:
                                          headers=self.headers,
                                          json=user_payload,
                                          timeout=10)
+
+        response_logging(self.response)
+        response_attaching(self.response)
 
         return  self.response
 
@@ -118,6 +127,8 @@ class User:
                                             'password': common_password
                                          },
                                          timeout=10)
+        response_logging(self.response)
+        response_attaching(self.response)
 
         return self.response
 
@@ -133,6 +144,8 @@ class User:
                                          url=f'{self.api_url}/v2/user/logout',
                                          headers=self.headers,
                                          timeout=10)
+        response_logging(self.response)
+        response_attaching(self.response)
 
         return self.response
 
@@ -147,6 +160,9 @@ class User:
                                          url=f'{self.api_url}/v2/user/{common_username}',
                                          headers=self.headers,
                                          timeout=10)
+
+        response_logging(self.response)
+        response_attaching(self.response)
 
         return self.response
 
