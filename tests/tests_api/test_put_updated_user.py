@@ -19,6 +19,7 @@ def test_put_update_user_success(api_url,headers,user_payload,common_username):
 
     assert response_put.status_code == 200
     user.validate_put_user_response()
+    user.assert_put_user_response_body(user_payload)
 
     user.get_user_by_username(user.new_username)
     user.assert_get_response_body(user.update_payload)

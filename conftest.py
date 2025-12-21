@@ -19,16 +19,18 @@ def headers():
 
 @pytest.fixture(scope="session")
 def user_payload():
-    """Фикстура возвращает полный payload с username"""
     return payload_generate_user()
 
 
 @pytest.fixture()
 def common_username(user_payload):
-    """Username берется из payload"""
     return user_payload['username']
 
 @pytest.fixture()
 def common_password(user_payload):
     return user_payload['password']
+
+@pytest.fixture()
+def common_id(user_payload):
+    return user_payload['id']
 

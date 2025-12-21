@@ -8,14 +8,14 @@ from allure_commons.types import AttachmentType
 
 def response_logging(response: Response):
     logging.info("Request: " + response.request.method + " " + response.request.url)
+
     if response.request.body:
         request_body = response.request.body
         if isinstance(request_body, bytes):
             request_body = request_body.decode('utf-8')
-        logging.info("INFO Request body: " + request_body)  # логирование тела запроса если оно есть
+        logging.info("INFO Request body: " + request_body)# логирование тела запроса если оно есть
+
     logging.info("Request headers: " + str(response.request.headers))
-    logging.info("Response code " + str(response.status_code))
-    logging.info("Response: " + response.text)
 
     # Логируем статус код с правильным уровнем
     if response.status_code >= 500:
