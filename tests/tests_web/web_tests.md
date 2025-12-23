@@ -28,15 +28,42 @@
 * ✅ Поиск товара по названию
 
 ## Запуск тестов
-#### Все UI тесты запускаются удалённо (Jenkins), но их можно запустить и локально
+#### UI тесты запускаются удалённо (Jenkins), либо selenoid, также их можно запустить локально
+   
+### С помощью [Jenkins](https://jenkins.autotests.cloud/job/DIPLOM_PROJECT_FEDOSEEV/)
+#### Для запуска автотестов необходимо:
+ - Открыть [джобу](https://jenkins.autotests.cloud/job/DIPLOM_PROJECT_FEDOSEEV/) в jenkins
+ - Нажать на кнопку Build with Parameters
+ - указать credentials в параметрах selenoid_login, selenoid_password, selenoid_url
+ - В select_run_autotests выбрать tests/tests_web
+ - Нажать на Build
 
-### Локально
+ <img src="images/screenshots/job_jenkins.png" width="700" alt="Jenkins Job">
+ 
+### через selenoid
 Важно! Перед запуском, в корне проекта, нужно создать файл .env.сredentials и указать там 
 * SELENOID_LOGIN
 * SELENOID_PASSWORD
 * SELENOID_URL
 
-Для запуска тестов локально нужно выполнить следующие шаги
+Для запуска тестов через selenoid нужно выполнить следующие шаги
+1. Склонировать репозиторий
+2. Открыть проект в PyCharm
+3. Ввести в терминале следующие команды
+   
+   3.1 установка зависимостей
+   ```bash
+   poetry install
+   ```
+   
+   3.2 запуск тестов 
+   ```bash
+   pytest tests/tests_web/ --web-context=selenoid
+   ```
+
+### локально
+
+Для запуска тестов через локлаьно нужно выполнить следующие шаги
 1. Склонировать репозиторий
 2. Открыть проект в PyCharm
 3. Ввести в терминале следующие команды
@@ -50,17 +77,6 @@
    ```bash
    pytest tests/tests_web/ --web-context=local_browser
    ```
-   
-### С помощью [Jenkins](https://jenkins.autotests.cloud/job/DIPLOM_PROJECT_FEDOSEEV/)
-#### Для запуска автотестов необходимо:
- - Открыть [джобу](https://jenkins.autotests.cloud/job/DIPLOM_PROJECT_FEDOSEEV/) в jenkins
- - Нажать на кнопку Build with Parameters
- - указать credentials в параметрах selenoid_login, selenoid_password, selenoid_url
- - В select_run_autotests выбрать tests/tests_web
- - Нажать на Build
-
- <img src="images/screenshots/job_jenkins.png" width="700" alt="Jenkins Job">
-
 
 ## Отчет о прохождении тестов (Allure)
 ### Локально
@@ -81,6 +97,7 @@ allure serve allure-results
 
 ### В проекте реализована интеграция с [Allure TestsOps](https://allure.autotests.cloud/project/5062/dashboards)
 <img src="images/screenshots/allure_testops.png" width="800" alt="Allure TestOps Dashboard">
+
 
 
 
