@@ -106,7 +106,7 @@ allure serve allure-results
 ### В проекте реализована интеграция с [Allure TestsOps](https://allure.autotests.cloud/project/5062/dashboards)
 <img src="images/screenshots/testops_mobile.png" width="800" alt="Allure TestOps Mobile Dashboard">
 
-
-
+### В проекте настроена отправка allerts в Telegram
+<img src="images/screenshots/tg.png" width="700" alt="Telegram Notification for API Tests">
 
 

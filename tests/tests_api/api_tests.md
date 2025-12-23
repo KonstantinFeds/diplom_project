@@ -11,6 +11,7 @@
   <code><img src="images/logo/Allure_new.png" width="40" height="40" alt="Allure Report" title="Allure Report"></code>
   <code><img src="images/logo/allure_testops.png" width="40" height="40" alt="Allure TestOps" title="Allure TestOps"></code>
   <code><img src="images/logo/requests.png" width="40" height="40" alt="Requests" title="Requests"></code>
+  <code><img src="images/logo/tg.png" width="40" height="40" alt="Telegram" title="Telegram"></code>
 
 
 ## Покрываемый функционал
@@ -72,3 +73,6 @@ allure serve allure-results
 ### В проекте реализована интеграция с [Allure TestsOps](https://allure.autotests.cloud/project/5062/dashboards)
 <img src="images/screenshots/testops.png" width="700" alt="Allure TestOps for API Testing">
 
+
+### В проекте настроена отправка allerts в Telegram
+<img src="images/screenshots/tg.png" width="700" alt="Telegram Notification for API Tests">
