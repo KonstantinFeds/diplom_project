@@ -36,7 +36,7 @@
 * SELENOID_PASSWORD
 * SELENOID_URL
 
-Для запуска тестов локально, нужно выполнить следующие шаги
+Для запуска тестов локально нужно выполнить следующие шаги
 1. Склонировать репозиторий
 2. Открыть проект в PyCharm
 3. Ввести в терминале следующие команды
@@ -67,4 +67,24 @@
 Для получения отчета нужно ввести команду 
 ```
 allure serve allure-results
+ ```
+Ниже представлен пример allure отчета 
+<img src="images/screenshots/allure_results_web.png" width="800" alt="Allure Report Results">
+
+Подробные инструкции по работе с allure можно найти по [ссылке](https://allurereport.org/docs/).
+### Если тесты запускались в Jenkins
+
+Для получения отчета нужно нажать на иконку allure report в строке билда. 
+У него будет точно такой же формат, как и при получении локально.
+
+<img src="images/screenshots/allure_results_web_jenkins.png" width="700" alt="Allure Results in Jenkins">
+
+### В проекте реализована интеграция с [Allure TestsOps](https://allure.autotests.cloud/project/5062/dashboards)
+<img src="images/screenshots/allure_testops.png" width="800" alt="Allure TestOps Dashboard">
+
+
+
+
+
+
 
