@@ -1,4 +1,4 @@
-# Пример проекта API автотестов
+<h1 align="center">ПРИМЕР ПРОЕКТА API АВТОТЕСТОВ</h1>
 
 ###  Технологический стек
 
@@ -76,4 +76,5 @@ allure serve allure-results
 
 ### В проекте настроена отправка allerts в Telegram
 <img src="images/screenshots/tg.png" width="700" alt="Telegram Notification for API Tests">
+
 
