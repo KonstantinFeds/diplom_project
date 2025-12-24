@@ -1,6 +1,13 @@
 # Пример проекта мобильных автотестов для приложения WIKIPEDIA
+<br>
+<p align="center">
+  <img src="images/screenshots/screen_emulator.png" width="400" alt="Wikipedia app">
+</p>
+<br>
 
-###  Используемые технологии
+<hr style="height: 1px; border: none; background-color: #e1e4e8; margin: 20px 0;">
+
+###  Технологический стек
 <p align="center">
   <code><img src="images/logo/python.png" width="40" height="40" alt="Python" title="Python"></code
   <code><img src="images/logo/pycharm.png" width="40" height="40" alt="PyCharm" title="PyCharm"></code>
@@ -37,7 +44,7 @@
 
 1. Склонировать репозиторий
 2. Открыть проект в PyCharm
-3. Запустить сервер Appium
+3. через терминал запустить сервер Appium
     ```bash
    appium
    ```
@@ -108,5 +115,6 @@ allure serve allure-results
 
 ### В проекте настроена отправка allerts в Telegram
 <img src="images/screenshots/tg.png" width="700" alt="Telegram Notification for API Tests">
+
 
 
