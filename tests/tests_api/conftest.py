@@ -1,10 +1,10 @@
 import allure
 import pytest
-from faker import Faker
 import config
-from data.generators import payload_generate_user
+from pages.api.user_api import UserApiMethods
+from data.generators import payload_generate_user, generate_password
 
-fake = Faker()
+
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -31,14 +31,9 @@ def headers():
 def user_payload():
     return payload_generate_user()
 
-
-@allure.title("username")
+@allure.title("API клиент для пользователей")
 @pytest.fixture()
-def common_username(user_payload):
-    return user_payload["username"]
+def user_api(api_url, headers):
+    return UserApiMethods(api_url, headers)
 
 
-@allure.title("password")
-@pytest.fixture()
-def common_password(user_payload):
-    return user_payload["password"]

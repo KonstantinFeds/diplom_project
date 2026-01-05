@@ -1,16 +1,18 @@
 import allure
-
-from pages.api.user_api import User
+from data.json_schemas.validators import SchemaValidator
 
 
 @allure.epic("выход из системы")
 @allure.title("успешный разлогин пользователя")
 @allure.severity(allure.severity_level.NORMAL)
-def test_get_logout_success(api_url, headers):
-    user = User(api_url, headers)
+def test_get_logout_success(user_api, headers):
 
-    get_response = user.get_user_logout()
+    get_response = user_api.get_user_logout()
 
     assert get_response.status_code == 200
-    user.validate_get_user_logout_response()
-    user.assert_get_user_logout_response_body()
+    SchemaValidator.validate_schema(get_response.json(),'get_logout_response.json')
+
+    response_body = get_response.json()
+    assert response_body["code"] == 200
+    assert response_body["type"] == "unknown"
+    assert response_body["message"] == "ok"

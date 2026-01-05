@@ -1,22 +1,25 @@
 import allure
-
-from pages.api.user_api import User
+from pages.api.user_api import UserApiMethods
+from data.json_schemas.assertions import UserAssertions
+from data.json_schemas.validators import SchemaValidator
 
 
 @allure.epic("авторизация")
 @allure.title("успешная авторизация пользователя")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_get_login_user_success(
-    common_username, common_password, user_payload, api_url, headers
-):
+def test_get_login_user_success(user_payload, user_api, headers):
 
-    user = User(api_url, headers)
 
-    user.post_create_user_request_body(user_payload)
 
-    response_get = user.get_user_login(common_username, common_password)
+    user_api.post_create_user_request_body(user_payload)
+
+    username = user_payload["username"]
+    password = user_payload["password"]
+
+    response_get = user_api.get_user_login(username, password)
     assert response_get.status_code == 200
-    user.validate_get_user_login_response()
-    user.assert_get_user_login_response_body()
+    SchemaValidator.validate_schema(response_get.json(),"get_login_response.json")
+    UserAssertions.assert_get_user_login_response_body(response_get.json())
 
-    user.delete_user(common_username)
+
+    user_api.delete_user(username)
