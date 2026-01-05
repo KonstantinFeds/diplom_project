@@ -1,5 +1,4 @@
 import allure
-from pages.api.user_api import UserApiMethods
 from data.json_schemas.assertions import UserAssertions
 from data.json_schemas.validators import SchemaValidator
 

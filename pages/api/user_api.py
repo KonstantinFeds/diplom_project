@@ -1,10 +1,5 @@
-import json
-
 import allure
 import requests
-from jsonschema import validate
-from data.generators import payload_generate_user
-from utils.file import path_from_json_schemas
 from utils.logger import response_logging, response_attaching
 
 
@@ -106,13 +101,5 @@ class UserApiMethods:
 
         return response
 
-"""
-    @staticmethod
-    @allure.step("Генерация новых данных для обновления")
-    def generate_update_payload(old_payload: dict):
-        new_payload = payload_generate_user()
-        new_payload["id"] = old_payload["id"]
-        return new_payload
-"""
 
 
