@@ -1,6 +1,6 @@
-# Пример проекта API автотестов
+<h1 align="center">ПРИМЕР ПРОЕКТА API АВТОТЕСТОВ</h1>
 
-###  Используемые технологии
+###  Технологический стек
 
 <p align="center">
   <code><img src="images/logo/python.png" width="40" height="40" alt="Python" title="Python"></code
@@ -76,3 +76,5 @@ allure serve allure-results
 
 ### В проекте настроена отправка allerts в Telegram
 <img src="images/screenshots/tg.png" width="700" alt="Telegram Notification for API Tests">
+
+
