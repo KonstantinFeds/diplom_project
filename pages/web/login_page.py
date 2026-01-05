@@ -1,34 +1,39 @@
 import allure
 from selene import browser, have
 
-from pages.web.locators import LocatorsWeb
-
 
 class LoginPage:
 
-    @allure.step("переход на страницу логина")
-    def go_to_login_page_click(self):
-        browser.element(LocatorsWeb.LOGIN_PAGE_BUTTON).click()
+    LOGIN_PAGE_BUTTON = ".nav-panel__link_login"
+    INPUT_USER_LOGIN = '[name="USER_LOGIN"]'
+    INPUT_USER_PASSWORD = '[name="USER_PASSWORD"]'
+    LOGIN_BUTTON = '[name="Login"]'
+    LOGIN_ERROR_MESSAGE = ".auth-error.form-group.form-helper"
+
+    @allure.step("открытие страницы логина")
+    def open(self):
+        browser.open("/login/")  # или какой у вас URL для логина
         return self
+
 
     @allure.step("ввод логина")
     def input_login(self, value):
-        browser.element(LocatorsWeb.INPUT_USER_LOGIN).type(value)
+        browser.element(self.INPUT_USER_LOGIN).type(value)
 
         return self
 
     @allure.step("ввод пароля")
     def input_password(self, value):
-        browser.element(LocatorsWeb.INPUT_USER_PASSWORD).type(value)
+        browser.element(self.INPUT_USER_PASSWORD).type(value)
         return self
 
     @allure.step("клик по кнопке логина")
     def login_button_click(self):
-        browser.element(LocatorsWeb.LOGIN_BUTTON).click()
+        browser.element(self.LOGIN_BUTTON).click()
         return self
 
     @allure.step("проверка сообщения об ошибке авторизации")
     def assert_login_error_message(self, value):
-        browser.element(LocatorsWeb.LOGIN_ERROR_MESSAGE).should(have.exact_text(value))
+        browser.element(self.LOGIN_ERROR_MESSAGE).should(have.exact_text(value))
 
         return self

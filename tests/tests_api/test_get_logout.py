@@ -10,7 +10,7 @@ def test_get_logout_success(user_api, headers):
     get_response = user_api.get_user_logout()
 
     assert get_response.status_code == 200
-    SchemaValidator.validate_schema(get_response.json(),'get_logout_response.json')
+    SchemaValidator.validate_schema(get_response.json(), "get_logout_response.json")
 
     response_body = get_response.json()
     assert response_body["code"] == 200

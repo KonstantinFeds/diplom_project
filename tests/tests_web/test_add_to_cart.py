@@ -12,4 +12,4 @@ catalog_page = CatalogPage()
 def test_add_to_cart_product(open_site_without_cookies):
 
     catalog_page.go_to_the_catalog_dinamiki()
-    (cart_page.add_products_to_cart().assert_count_product_to_cart())
+    (cart_page.add_products_to_cart(5).assert_cart_count(5))

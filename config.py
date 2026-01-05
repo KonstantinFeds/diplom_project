@@ -21,27 +21,23 @@ def clear_allure_results():
 
 def to_driver_options_web(web_context):
     """настройка конфигурация от переданного параметра --web-context"""
+
+    browser.config.base_url = "https://ural-auto.ru/"
+    browser.config.timeout = 10
+    browser.config.window_width = 1920
+    browser.config.window_height = 1080
+
+    options = Options()
+    options.page_load_strategy = "eager"
+
     if web_context == "local_browser":
-        browser.config.base_url = "https://ural-auto.ru/"
-        browser.config.timeout = 10
-        browser.config.window_width = 1495
-        browser.config.window_height = 870
 
         # Создаем локальный драйвер Chrome
-        options = Options()
-        options.page_load_strategy = "eager"
         driver = webdriver.Chrome(options=options)
-        browser.config.driver = driver
 
-    if web_context == "selenoid":
+    elif web_context == "selenoid":
 
-        browser.config.base_url = "https://ural-auto.ru/"
-        browser.config.timeout = 10
-        browser.config.window_width = 1495
-        browser.config.window_height = 870
-
-        options = Options()
-        options.page_load_strategy = "eager"
+        load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
 
         selenoid_capabilities = {
             "browserName": "chrome",
@@ -52,7 +48,6 @@ def to_driver_options_web(web_context):
             },
         }
 
-        load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
         options.capabilities.update(selenoid_capabilities)
 
         # Создаем удаленный драйвер
@@ -60,7 +55,8 @@ def to_driver_options_web(web_context):
             command_executor=f"https://{os.getenv('SELENOID_LOGIN')}:{os.getenv('SELENOID_PASSWORD')}@{os.getenv('SELENOID_URL')}/wd/hub",
             options=options,
         )
-        browser.config.driver = driver
+
+    browser.config.driver = driver
 
     return browser
 
@@ -77,13 +73,16 @@ def to_driver_options_mobile(mobile_context):
         )
 
     if mobile_context == "bstack":
+
+        load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
+
         options.set_capability("remote_url", os.getenv("REMOTE_URL"))
         options.set_capability("deviceName", os.getenv("DEVICE_NAME"))
         options.set_capability("platformName", os.getenv("PLATFORM_NAME"))
         options.set_capability("platformVersion", os.getenv("PLATFORM_VERSION"))
         options.set_capability("appWaitActivity", os.getenv("APP_WAIT_ACTIVITY"))
         options.set_capability("app", os.getenv("APP"))
-        load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
+
         options.set_capability(
             "bstack:options",
             {

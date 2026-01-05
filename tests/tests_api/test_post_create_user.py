@@ -7,16 +7,16 @@ from data.json_schemas.validators import SchemaValidator
 @allure.severity(allure.severity_level.CRITICAL)
 def test_post_create_user_success(user_api, headers, user_payload):
 
-
-    SchemaValidator.validate_schema(data_to_validate=user_payload,
-        schema_filename="post_create_user_payload.json"
+    SchemaValidator.validate_schema(
+        data_to_validate=user_payload, schema_filename="post_create_user_payload.json"
     )
 
     create_response = user_api.post_create_user_request_body(user_payload)
     assert create_response.status_code == 200
 
-    SchemaValidator.validate_schema(create_response.json(),'post_create_user_response.json')
-
+    SchemaValidator.validate_schema(
+        create_response.json(), "post_create_user_response.json"
+    )
 
     response_body = create_response.json()
     expected_message = str(user_payload["id"])

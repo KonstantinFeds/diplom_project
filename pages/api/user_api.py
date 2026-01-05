@@ -9,7 +9,6 @@ class UserApiMethods:
         self.api_url = api_url
         self.headers = headers
 
-
     @allure.step("создание пользователя")
     def post_create_user_request_body(self, user_payload):
 
@@ -41,9 +40,8 @@ class UserApiMethods:
 
         return response
 
-
     @allure.step("обновление данных пользователя")
-    def put_update_user_request_body(self,  username: str, user_payload: dict):
+    def put_update_user_request_body(self, username: str, user_payload: dict):
         response = requests.request(
             method="PUT",
             url=f"{self.api_url}/v2/user/{username}",
@@ -56,7 +54,6 @@ class UserApiMethods:
         response_attaching(response)
 
         return response
-
 
     @allure.step("логин пользователя")
     def get_user_login(self, username: str, password: str):
@@ -72,7 +69,6 @@ class UserApiMethods:
 
         return response
 
-
     @allure.step("разлогин пользователя")
     def get_user_logout(self):
         response = requests.request(
@@ -85,7 +81,6 @@ class UserApiMethods:
         response_attaching(response)
 
         return response
-
 
     @allure.step("удаление пользователя")
     def delete_user(self, username: str):
@@ -100,6 +95,3 @@ class UserApiMethods:
         response_attaching(response)
 
         return response
-
-
-

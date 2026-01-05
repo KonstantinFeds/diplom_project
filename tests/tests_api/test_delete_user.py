@@ -5,9 +5,7 @@ from data.json_schemas.validators import SchemaValidator
 @allure.epic("удаление пользователя")
 @allure.title("успешное удаление пользователя")
 @allure.severity(allure.severity_level.NORMAL)
-def test_delete_user_success(user_api,headers,user_payload):
-
-
+def test_delete_user_success(user_api, headers, user_payload):
 
     user_api.post_create_user_request_body(user_payload)
 
@@ -17,7 +15,6 @@ def test_delete_user_success(user_api,headers,user_payload):
     assert delete_response.status_code == 200
 
     SchemaValidator.validate_schema(delete_response.json(), "delete_user_response.json")
-
 
     response_body = delete_response.json()
     assert response_body["code"] == 200

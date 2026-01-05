@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import pytest
 from selene import browser, be
 import config
-from pages.web.locators import LocatorsWeb
 from utils import attach
 
 
@@ -16,7 +15,7 @@ def pytest_addoption(parser):
     """добавляет опцию командной строки --web-context"""
     parser.addoption(
         "--web-context",
-        default="selenoid",  # значение по умолчанию
+        default="local_browser",  # значение по умолчанию
         help="Specify the test context",
     )
 
@@ -55,7 +54,10 @@ def browser_management(web_context):
 @allure.title("открытие сайта и обработка cookies")
 @pytest.fixture(scope="function")
 def open_site_without_cookies():
+
+    ACCEPT_COOKIES_BUTTON = ".js-message-block__close"
+
     browser.open("/")
-    browser.element(LocatorsWeb.ACCEPT_COOKIES_BUTTON).should(be.clickable).click()
+    browser.element(ACCEPT_COOKIES_BUTTON).should(be.clickable).click()
 
     yield
