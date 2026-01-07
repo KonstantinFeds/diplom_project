@@ -1,7 +1,25 @@
+import os
 import allure
+import utils.file
+from dotenv import load_dotenv
 from pages.web.login_page import LoginPage
 
 login_page = LoginPage()
+load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
+
+@allure.epic("авторизация")
+@allure.title("успешный логин пользователя")
+@allure.severity(allure.severity_level.CRITICAL)
+def test_success_login(open_site_without_cookies):
+
+    (
+    login_page.open()
+    .input_login(os.getenv('USER_LOGIN'))
+    .input_password(os.getenv('USER_PASSWORD'))
+    .login_button_click()
+    .assert_user_name_in_profile(f'Здравствуйте, {os.getenv('USER_LOGIN')}!')
+    )
+
 
 
 @allure.epic("авторизация")
@@ -16,3 +34,5 @@ def test_invalid_login(open_site_without_cookies):
         .login_button_click()
         .assert_login_error_message("Неверный логин или пароль.")
     )
+
+

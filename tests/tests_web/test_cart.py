@@ -13,7 +13,7 @@ def test_removing_products_from_the_cart(open_site_without_cookies):
 
         catalog_page.go_to_the_catalog_dinamiki()
 
-        cart_page.add_products_to_cart(5)
+        catalog_page.add_products_to_cart(5)
         cart_page.assert_cart_count(5)
         cart_page.cart_button_click()
         cart_page.checkbox_select_all_click()

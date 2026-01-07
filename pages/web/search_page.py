@@ -2,11 +2,11 @@ import allure
 from selene import browser, have
 
 
+
 class SearchPage:
 
     SEARCH_BUTTON = '[title="Поиск"]'
     INPUT_SEARCH = "#title-search-input"
-    SEARCH_RESULT_PRODUCT = 'a.catalog-block__name[href*="molniya-kvark"]'
     NAME_PRODUCT = ".product-detail__name.product-detail__name_mb"
 
     @allure.step('клик по кнопке "поиска"')
@@ -19,9 +19,10 @@ class SearchPage:
         browser.element(self.INPUT_SEARCH).type(value).press_enter()
         return self
 
-    @allure.step('выбор найденного товара')
-    def click_on_the_found_product(self):
-        browser.element(self.SEARCH_RESULT_PRODUCT).click()
+    @allure.step('клик на товар: "{product_name}"')
+    def click_on_the_found_product(self, product_name: str):
+        product_locator = f'//a[@class="catalog-block__name js-catalog-card-click" and text()=" {product_name}"]'
+        browser.element(product_locator).click()
         return self
 
     @allure.step("проверка наименования товара")

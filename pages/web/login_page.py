@@ -9,10 +9,12 @@ class LoginPage:
     INPUT_USER_PASSWORD = '[name="USER_PASSWORD"]'
     LOGIN_BUTTON = '[name="Login"]'
     LOGIN_ERROR_MESSAGE = ".auth-error.form-group.form-helper"
+    USER_NAME = '.profile-header__title'
+
 
     @allure.step("открытие страницы логина")
     def open(self):
-        browser.open("/login/")  # или какой у вас URL для логина
+        browser.open("/login/")
         return self
 
 
@@ -35,5 +37,10 @@ class LoginPage:
     @allure.step("проверка сообщения об ошибке авторизации")
     def assert_login_error_message(self, value):
         browser.element(self.LOGIN_ERROR_MESSAGE).should(have.exact_text(value))
-
         return self
+
+    @allure.step("проверка имени пользователя в профиле: {value}")
+    def assert_user_name_in_profile(self,value):
+        browser.element(self.USER_NAME).should(have.exact_text(value))
+
+

@@ -26,3 +26,5 @@ def test_go_to_the_catalog_subwoofer(open_site_without_cookies):
             "ПАТРИОТ 6,5",
         )
     )
+
+
