@@ -72,7 +72,7 @@ def to_driver_options_mobile(mobile_context):
             "app", utils.file.abs_path_from_project(os.getenv("APP"))
         )
 
-    if mobile_context == "bstack":
+    elif mobile_context == "bstack":
 
         load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
 
