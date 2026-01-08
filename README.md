@@ -5,7 +5,7 @@
 ## Навигация
 
 1. [Автотесты на WEB UI](readme/web/web_tests.md)
-2. [Автотесты на API](readme/api_tests.md)
+2. [Автотесты на API](readme/api/api_tests.md)
 3. [Автотесты на Mobile](readme/mobile/mobile_tests.md)
 
 
