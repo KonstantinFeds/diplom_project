@@ -1,4 +1,3 @@
-import time
 
 import allure
 from pages.web.cart_page import CartPage

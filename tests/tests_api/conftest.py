@@ -1,6 +1,9 @@
+import os
 import allure
 import pytest
+from dotenv import load_dotenv
 import config
+import utils.file
 from pages.api.user_api import UserApiMethods
 from data.generators import payload_generate_user, generate_password
 
@@ -13,7 +16,8 @@ def clean_allure_results():
 @allure.title("api url")
 @pytest.fixture()
 def api_url():
-    return "https://petstore.swagger.io"
+    load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.config_project"))
+    return os.getenv("API_URL")
 
 
 @allure.title("request headers")

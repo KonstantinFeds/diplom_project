@@ -21,14 +21,16 @@ def clear_allure_results():
 
 def to_driver_options_web(web_context):
     """настройка конфигурация от переданного параметра --web-context"""
+    load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.config_project"))
 
-    browser.config.base_url = "https://ural-auto.ru/"
-    browser.config.timeout = 10
-    browser.config.window_width = 1920
-    browser.config.window_height = 1080
+
+    browser.config.base_url = os.getenv("BASE_URL")
+    browser.config.timeout = int(os.getenv("TIMEOUT"))
+    browser.config.window_width = int(os.getenv("WINDOW_WIDTH"))
+    browser.config.window_height = int(os.getenv("WINDOW_HEIGHT"))
 
     options = Options()
-    options.page_load_strategy = "eager"
+    options.page_load_strategy = os.getenv("PAGE_LOAD_STRATEGY")
 
     if web_context == "local_browser":
 
@@ -40,8 +42,8 @@ def to_driver_options_web(web_context):
         load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
 
         selenoid_capabilities = {
-            "browserName": "chrome",
-            "browserVersion": "128.0",
+            "browserName": os.getenv("BROWSER_NAME"),
+            "browserVersion": os.getenv("BROWSER_VERSION"),
             "selenoid:options": {
                 "enableVNC": True,
                 "enableVideo": True,
