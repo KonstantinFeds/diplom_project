@@ -211,4 +211,4 @@ allure-results/
 tests/tests_mobile/allure-results/
 tests/web/allure-results/
 #creds
-.env.credentials/
+.env.credentials
