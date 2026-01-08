@@ -9,7 +9,7 @@ from selenium.webdriver.chrome.options import Options
 import utils.file
 
 
-def clear_allure_results():
+def clean_allure_results():
     """очистка результатов модуля allure-results"""
     allure_dir = Path("allure-results")
 
@@ -19,7 +19,7 @@ def clear_allure_results():
     allure_dir.mkdir(exist_ok=True)
 
 
-def to_driver_options_web(web_context):
+def set_web_driver_options(web_context):
     """настройка конфигурация от переданного параметра --web-context"""
     load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.config_project"))
 
@@ -63,7 +63,7 @@ def to_driver_options_web(web_context):
     return browser
 
 
-def to_driver_options_mobile(mobile_context):
+def set_mobile_driver_options(mobile_context):
     """настройка конфигурация от переданного параметра --mobile-context"""
     options = UiAutomator2Options()
     if mobile_context == "local_emulator":

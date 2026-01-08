@@ -6,10 +6,6 @@ import config
 from utils import attach
 
 
-@pytest.fixture(scope="session", autouse=True)
-def clean_allure_results():
-    config.clear_allure_results()
-
 
 def pytest_addoption(parser):
     """добавляет опцию командной строки --web-context"""
@@ -37,7 +33,7 @@ def web_context(request):
 @allure.title("настройка конфигураций для управления браузером")
 @pytest.fixture(scope="function", autouse=True)
 def browser_management(web_context):
-    config.to_driver_options_web(web_context)
+    config.set_web_driver_options(web_context)
 
     yield
 
@@ -57,7 +53,7 @@ def open_site_without_cookies():
 
     ACCEPT_COOKIES_BUTTON = ".js-message-block__close"
 
-    browser.open("/")
+    browser.open_login_page("/")
     browser.element(ACCEPT_COOKIES_BUTTON).should(be.clickable).click()
 
     yield

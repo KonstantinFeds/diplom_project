@@ -11,10 +11,10 @@ def test_go_to_the_catalog_subwoofer(open_site_without_cookies):
 
     (
         (
-            catalog_page.go_to_the_catalog_subwoofer().assert_name_catalog_subwoofer(
+            catalog_page.open_subwoofer_catalog().assert_catalog_subwoofer_title(
                 "САБВУФЕРЫ"
             )
-        ).assert_products_in_the_catalog(
+        ).assert_products(
             "ТТ 12",
             "МОЛОТ 12",
             "ТТ 15",

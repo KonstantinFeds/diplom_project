@@ -4,7 +4,7 @@ import allure
 fake = Faker()
 
 
-def payload_generate_user():
+def generate_user_payload():
     return {
         "id": fake.random_int(min=1, max=1000),
         "username": fake.user_name()[:20],
@@ -27,6 +27,6 @@ def generate_password():
 
 @allure.step("генерация новых данных для обновления")
 def generate_update_payload(old_payload):
-    update_payload = payload_generate_user()
+    update_payload = generate_user_payload()
     update_payload["id"] = old_payload["id"]
     return update_payload

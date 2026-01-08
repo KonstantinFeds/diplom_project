@@ -13,8 +13,8 @@ class LoginPage:
 
 
     @allure.step("открытие страницы логина")
-    def open(self):
-        browser.open("/login/")
+    def open_login_page(self):
+        browser.open_login_page("/login/")
         return self
 
 

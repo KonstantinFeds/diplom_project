@@ -7,10 +7,6 @@ import utils.attach
 import allure
 
 
-@pytest.fixture(scope="session", autouse=True)
-def clear_allure_results():
-    config.clear_allure_results()
-
 
 def pytest_addoption(parser):
     """добавляет опцию командной строки --mobile-context"""
@@ -37,7 +33,7 @@ def mobile_context(request):
 @pytest.fixture(scope="function", autouse=True)
 def mobile_management(mobile_context):
 
-    options = config.to_driver_options_mobile(mobile_context)
+    options = config.set_mobile_driver_options(mobile_context)
 
     browser.config.driver = webdriver.Remote(
         options.get_capability("remote_url"), options=options

@@ -17,23 +17,23 @@ class CatalogPage:
     )
 
     @allure.step('переход в каталог "Cабвуферы"')
-    def go_to_the_catalog_subwoofer(self):
-        browser.open("/catalog/subwoofers/")
+    def open_subwoofer_catalog(self):
+        browser.open_login_page("/catalog/subwoofers/")
         return self
 
     @allure.step('переход в каталог "Акустика"')
-    def go_to_the_catalog_dinamiki(self):
-        browser.open("/catalog/dinamiki/")
+    def open_dinamiki_catalog(self):
+        browser.open_login_page("/catalog/dinamiki/")
         return self
 
     @allure.step('проверка наименования каталога "Cабвуферы"')
-    def assert_name_catalog_subwoofer(self, value):
+    def assert_catalog_subwoofer_title(self, value):
         browser.element(self.TITLE_CATALOG_SUBWOOFERS).should(have.exact_text(value))
 
         return self
 
     @allure.step("проверка наличия товаров в каталоге")
-    def assert_products_in_the_catalog(self, *products):
+    def assert_products(self, *products):
         (browser.all(self.ALL_PRODUCTS_CATALOG).should(have.exact_texts(*products)))
 
         return self

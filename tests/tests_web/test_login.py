@@ -13,7 +13,7 @@ load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
 def test_success_login(open_site_without_cookies):
 
     (
-    login_page.open()
+    login_page.open_login_page()
     .input_login(os.getenv('USER_LOGIN'))
     .input_password(os.getenv('USER_PASSWORD'))
     .login_button_click()
@@ -28,7 +28,7 @@ def test_success_login(open_site_without_cookies):
 def test_invalid_login(open_site_without_cookies):
 
     (
-        login_page.open()
+        login_page.open_login_page()
         .input_login("TestLogin@mail.ru")
         .input_password("TestPassword")
         .login_button_click()

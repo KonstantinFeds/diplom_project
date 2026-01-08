@@ -30,7 +30,7 @@ class LoginPage:
         return self
 
     @allure.step('tap по полю "username"')
-    def username_tap(self):
+    def tap_username(self):
         browser.element((AppiumBy.XPATH, self.USERNAME)).click()
         return self
 
@@ -40,7 +40,7 @@ class LoginPage:
         return self
 
     @allure.step('tap по полю "password"')
-    def password_tap(self):
+    def tap_password(self):
         browser.element((AppiumBy.XPATH, self.PASSWORD)).click()
         return self
 

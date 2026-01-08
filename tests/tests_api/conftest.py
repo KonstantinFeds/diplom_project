@@ -2,15 +2,9 @@ import os
 import allure
 import pytest
 from dotenv import load_dotenv
-import config
 import utils.file
-from pages.api.user_api import UserApiMethods
-from data.generators import payload_generate_user, generate_password
-
-
-@pytest.fixture(scope="session", autouse=True)
-def clean_allure_results():
-    config.clear_allure_results()
+from api.clients.user_api import UserApiMethods
+from data.generators import generate_user_payload
 
 
 @allure.title("api url")
@@ -31,7 +25,7 @@ def headers():
 @allure.title("генерация payload")
 @pytest.fixture(scope="function")
 def user_payload():
-    return payload_generate_user()
+    return generate_user_payload()
 
 
 @allure.title("API клиент для пользователей")

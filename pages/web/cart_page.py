@@ -26,19 +26,20 @@ class CartPage:
         return self
 
     @allure.step('переход в "корзину"')
-    def cart_button_click(self):
-        browser.element(self.CART_BUTTON).click()
+    def open_cart(self):
+        browser.open_login_page('/personal/cart/')
+        #browser.element(self.CART_BUTTON).click()
 
         return self
 
     @allure.step("выбор товаров")
-    def checkbox_select_all_click(self):
+    def select_all_products_checkbox(self):
         browser.element(self.SELECT_ALL_PRODUCTS_BUTTON).click()
 
         return self
 
     @allure.step("удаление всех товаров")
-    def cart_delete_all_button_click(self):
+    def delete_all_products(self):
         browser.element(self.DELETE_ALL_BUTTON).click()
 
         return self
