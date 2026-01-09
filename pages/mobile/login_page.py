@@ -2,8 +2,8 @@ import allure
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
 
-class LoginPage:
 
+class LoginPage:
     MORE_MENU_BUTTON = "More"
     LOGIN_MENU_BUTTON = "org.wikipedia.alpha:id/main_drawer_login_button"
     LOGIN_PAGE_BUTTON = "org.wikipedia.alpha:id/create_account_login_button"
@@ -14,9 +14,7 @@ class LoginPage:
 
     @allure.step('клик по меню "More"')
     def more_menu_click(self):
-        browser.element(
-            (AppiumBy.ACCESSIBILITY_ID, self.MORE_MENU_BUTTON)
-        ).click()
+        browser.element((AppiumBy.ACCESSIBILITY_ID, self.MORE_MENU_BUTTON)).click()
         return self
 
     @allure.step("переход на страницу создания аккаунта")

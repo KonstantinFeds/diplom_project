@@ -1,11 +1,11 @@
+import allure
 import pytest
 from appium import webdriver
 from dotenv import load_dotenv
 from selene import browser
+
 import config
 import utils.attach
-import allure
-
 
 
 def pytest_addoption(parser):
@@ -32,7 +32,6 @@ def mobile_context(request):
 @allure.title("настройка конфигураций для управления девайсом")
 @pytest.fixture(scope="function", autouse=True)
 def mobile_management(mobile_context):
-
     options = config.set_mobile_driver_options(mobile_context)
 
     browser.config.driver = webdriver.Remote(

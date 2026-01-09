@@ -1,8 +1,10 @@
 import os
-import requests
+
 import allure
-from dotenv import load_dotenv
+import requests
 from allure_commons.types import AttachmentType
+from dotenv import load_dotenv
+
 import utils.file
 
 load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
@@ -10,7 +12,6 @@ load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.credentials"))
 
 # запись теста с bstack
 def attach_bstack_video_android(session_id):
-
     bstack_session = requests.get(
         f"https://api.browserstack.com/app-automate/sessions/{session_id}.json",
         auth=(os.getenv("USER_NAME_BSTACK"), os.getenv("ACCESS_KEY_BSTACK")),

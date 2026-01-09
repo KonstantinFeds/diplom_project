@@ -1,11 +1,13 @@
 import os
 import shutil
 from pathlib import Path
+
+from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
 from selene import browser
 from selenium import webdriver
-from appium.options.android import UiAutomator2Options
 from selenium.webdriver.chrome.options import Options
+
 import utils.file
 
 
@@ -22,7 +24,6 @@ def clean_allure_results():
 def set_web_driver_options(web_context):
     """настройка конфигурация от переданного параметра --web-context"""
     load_dotenv(dotenv_path=utils.file.abs_path_from_project(".env.config_project"))
-
 
     browser.config.base_url = os.getenv("BASE_URL")
     browser.config.timeout = int(os.getenv("TIMEOUT"))
@@ -54,7 +55,7 @@ def set_web_driver_options(web_context):
 
         # Создаем удаленный драйвер
         driver = webdriver.Remote(
-            command_executor=f"https://{os.getenv('SELENOID_LOGIN')}:{os.getenv('SELENOID_PASSWORD')}@{os.getenv('SELENOID_URL')}/wd/hub",
+            command_executor=f"https://{os.getenv('SELENOID_LOGIN')}:{os.getenv('SELENOID_PASSWORD')}@selenoid.autotests.cloud/wd/hub",
             options=options,
         )
 

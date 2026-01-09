@@ -1,14 +1,14 @@
 import allure
-from data.generators import generate_update_payload
+
 from api.json_schemas.assertions import UserAssertions
 from api.json_schemas.validators import SchemaValidator
+from data.generators import generate_update_payload
 
 
 @allure.epic("авторизация")
 @allure.title("успешная авторизация пользователя")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_get_login_user_success(user_payload, user_api, headers):
-
+def test_get_login_user_success(user_payload, user_api):
     user_api.post_create_user_request_body(user_payload)
 
     username = user_payload["username"]
@@ -16,7 +16,9 @@ def test_get_login_user_success(user_payload, user_api, headers):
 
     response_get = user_api.get_user_login(username, password)
     assert response_get.status_code == 200
-    SchemaValidator.validate_schema(response_get.json(), "responses/get_login_response.json")
+    SchemaValidator.validate_schema(
+        response_get.json(), "responses/get_login_response.json"
+    )
     UserAssertions.assert_get_user_login_response_body(response_get.json())
 
     user_api.delete_user(username)
@@ -25,12 +27,13 @@ def test_get_login_user_success(user_payload, user_api, headers):
 @allure.epic("выход из системы")
 @allure.title("успешный разлогин пользователя")
 @allure.severity(allure.severity_level.NORMAL)
-def test_get_logout_success(user_api, headers):
-
+def test_get_logout_success(user_api):
     get_response = user_api.get_user_logout()
 
     assert get_response.status_code == 200
-    SchemaValidator.validate_schema(get_response.json(), "responses/get_logout_response.json")
+    SchemaValidator.validate_schema(
+        get_response.json(), "responses/get_logout_response.json"
+    )
 
     response_body = get_response.json()
     assert response_body["code"] == 200
@@ -41,10 +44,10 @@ def test_get_logout_success(user_api, headers):
 @allure.epic("создание пользователя")
 @allure.title("успешное создание пользователя")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_post_create_user_success(user_api, headers, user_payload):
-
+def test_post_create_user_success(user_api, user_payload):
     SchemaValidator.validate_schema(
-        data_to_validate=user_payload, schema_filename="requests/post_create_user_payload.json"
+        data_to_validate=user_payload,
+        schema_filename="requests/post_create_user_payload.json",
     )
 
     create_response = user_api.post_create_user_request_body(user_payload)
@@ -68,8 +71,7 @@ def test_post_create_user_success(user_api, headers, user_payload):
 @allure.epic("получение пользователя")
 @allure.title("успешное получение пользователя")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_get_user_by_user_name_success(user_api, headers, user_payload):
-
+def test_get_user_by_user_name_success(user_api, user_payload):
     user_api.post_create_user_request_body(user_payload)
 
     username = user_payload["username"]
@@ -77,7 +79,9 @@ def test_get_user_by_user_name_success(user_api, headers, user_payload):
     get_response = user_api.get_user_by_username(username)
 
     assert get_response.status_code == 200
-    SchemaValidator.validate_schema(get_response.json(), "responses/get_user_response.json")
+    SchemaValidator.validate_schema(
+        get_response.json(), "responses/get_user_response.json"
+    )
     UserAssertions.assert_get_user_response_body(get_response.json(), user_payload)
 
     user_api.delete_user(username)
@@ -86,8 +90,7 @@ def test_get_user_by_user_name_success(user_api, headers, user_payload):
 @allure.epic("обновление пользователя")
 @allure.title("успешное обновление пользователя")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_put_update_user_success(user_api, headers, user_payload):
-
+def test_put_update_user_success(user_api, user_payload):
     user_api.post_create_user_request_body(user_payload)
 
     old_username = user_payload["username"]
@@ -95,14 +98,17 @@ def test_put_update_user_success(user_api, headers, user_payload):
     update_payload = generate_update_payload(user_payload)
 
     SchemaValidator.validate_schema(
-        data_to_validate=update_payload, schema_filename="requests/put_user_payload.json"
+        data_to_validate=update_payload,
+        schema_filename="requests/put_user_payload.json",
     )
 
     response_put = user_api.put_update_user_request_body(old_username, update_payload)
 
     assert response_put.status_code == 200
 
-    SchemaValidator.validate_schema(response_put.json(), "responses/put_user_response.json")
+    SchemaValidator.validate_schema(
+        response_put.json(), "responses/put_user_response.json"
+    )
     UserAssertions.assert_put_user_response_body(response_put.json(), update_payload)
 
     user_api.delete_user(update_payload["username"])
@@ -111,8 +117,7 @@ def test_put_update_user_success(user_api, headers, user_payload):
 @allure.epic("удаление пользователя")
 @allure.title("успешное удаление пользователя")
 @allure.severity(allure.severity_level.NORMAL)
-def test_delete_user_success(user_api, headers, user_payload):
-
+def test_delete_user_success(user_api, user_payload):
     user_api.post_create_user_request_body(user_payload)
 
     username = user_payload["username"]
@@ -120,7 +125,9 @@ def test_delete_user_success(user_api, headers, user_payload):
     delete_response = user_api.delete_user(username)
     assert delete_response.status_code == 200
 
-    SchemaValidator.validate_schema(delete_response.json(), "responses/delete_user_response.json")
+    SchemaValidator.validate_schema(
+        delete_response.json(), "responses/delete_user_response.json"
+    )
 
     response_body = delete_response.json()
     assert response_body["code"] == 200

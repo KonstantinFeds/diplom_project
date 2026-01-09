@@ -2,9 +2,7 @@ import allure
 from selene import browser, have
 
 
-
 class SearchPage:
-
     SEARCH_BUTTON = '[title="Поиск"]'
     INPUT_SEARCH = "#title-search-input"
     NAME_PRODUCT = ".product-detail__name.product-detail__name_mb"

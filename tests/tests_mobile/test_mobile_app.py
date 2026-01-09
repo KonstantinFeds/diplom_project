@@ -1,7 +1,8 @@
 import allure
+
 from pages.mobile.login_page import LoginPage
-from pages.mobile.search_page import SearchPage
 from pages.mobile.onboarding_page import OnboardingPage
+from pages.mobile.search_page import SearchPage
 
 onboarding_page = OnboardingPage()
 search_page = SearchPage()
@@ -12,7 +13,6 @@ login_page = LoginPage()
 @allure.title("авторизация при неверном логине и пароле")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_invalid_login():
-
     onboarding_page.skip_onboarding_button_click()
     (
         login_page.more_menu_click()
@@ -31,7 +31,6 @@ def test_invalid_login():
 @allure.title("настройка языка")
 @allure.severity(allure.severity_level.NORMAL)
 def test_add_language():
-
     (
         onboarding_page.add_or_edit_languages_button_click()
         .add_language_button_click()

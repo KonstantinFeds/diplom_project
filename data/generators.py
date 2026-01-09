@@ -1,5 +1,5 @@
-from faker import Faker
 import allure
+from faker import Faker
 
 fake = Faker()
 

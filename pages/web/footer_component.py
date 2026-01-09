@@ -2,9 +2,7 @@ import allure
 from selene import browser, command, be, have
 
 
-
 class FooterComponent:
-
     GERMAN_LANGUAGE_BUTTON = '[title = "Немецкий"]'
     ALL_TITLE_NAME_CATALOG = '[class="catalog-tile__name"]'
 
@@ -18,7 +16,5 @@ class FooterComponent:
 
     @allure.step("перевод категорий на немецкий язык")
     def assert_catalog_titles(self, *titles):
-        browser.all(self.ALL_TITLE_NAME_CATALOG).should(
-            have.exact_texts(*titles)
-        )
+        browser.all(self.ALL_TITLE_NAME_CATALOG).should(have.exact_texts(*titles))
         return self

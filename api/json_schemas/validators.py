@@ -1,6 +1,8 @@
 import json
+
 import allure
 from jsonschema import validate
+
 from utils.file import path_from_json_schemas
 
 

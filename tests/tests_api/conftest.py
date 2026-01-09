@@ -1,7 +1,9 @@
 import os
+
 import allure
 import pytest
 from dotenv import load_dotenv
+
 import utils.file
 from api.clients.user_api import UserApiMethods
 from data.generators import generate_user_payload

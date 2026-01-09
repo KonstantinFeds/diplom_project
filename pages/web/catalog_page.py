@@ -1,16 +1,16 @@
 import time
+
 import allure
 from selene import browser, have, be
 
 
 class CatalogPage:
-
     TITLE_CATALOG_SUBWOOFERS = ".page-header__title"
     ALL_PRODUCTS_CATALOG = ".catalog-block__name"
     CHECKBOX_SERIES_NAME_AK = '//label[text()="АК"]'
     CHECKBOX_SERIES_NAME_BULAVA = '//label[text()="Булава"]'
     CATALOG_RESULTS_PRODUCTS = '[class="catalog-block__helper"]'
-    PRODUCT_PRICE_IN_CATALOG = '.catalog-block__price.catalog-block__price_new'
+    PRODUCT_PRICE_IN_CATALOG = ".catalog-block__price.catalog-block__price_new"
     CONTINUE_BUYING_BUTTON = ".btn.btn_primary.btn_block.js-modal-close"
     ADD_TO_CART_BUTTON = (
         ".catalog-block__btn.btn.btn_primary.btn_sm.js-catalog-block__btn"
@@ -51,20 +51,19 @@ class CatalogPage:
 
     @allure.step('проверка цены "{value}" товара в каталоге')
     def assert_product_price_in_catalog(self, value):
-        browser.all(self.PRODUCT_PRICE_IN_CATALOG).element_by(have.text(value)).should(be.visible)
-
+        browser.all(self.PRODUCT_PRICE_IN_CATALOG).element_by(have.text(value)).should(
+            be.visible
+        )
 
     @allure.step('добавление товара "{product_title}" в корзину')
-    def add_product_to_cart(self,product_title):
+    def add_product_to_cart(self, product_title):
         button_locator = f'//a[@class="catalog-block__btn btn btn_primary btn_sm js-catalog-block__btn" and @data-title=" {product_title}"]'
         browser.element(button_locator).click()
         time.sleep(0.5)
         browser.element(self.CONTINUE_BUYING_BUTTON).should(be.clickable).click()
 
-
     @allure.step("добавление {count} товаров в корзину")
     def add_products_to_cart(self, count: int = 5):
-
         add_buttons = browser.all(self.ADD_TO_CART_BUTTON)
 
         for i in range(count):

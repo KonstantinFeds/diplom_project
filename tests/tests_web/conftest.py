@@ -1,7 +1,8 @@
 import allure
-from dotenv import load_dotenv
 import pytest
+from dotenv import load_dotenv
 from selene import browser, be
+
 import config
 from utils import attach
 
@@ -49,7 +50,6 @@ def browser_management(web_context):
 @allure.title("открытие сайта и обработка cookies")
 @pytest.fixture(scope="function")
 def open_site_without_cookies():
-
     browser.open("/")
     browser.element(".js-message-block__close").should(be.clickable).click()
 

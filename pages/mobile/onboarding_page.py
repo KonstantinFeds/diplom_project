@@ -4,7 +4,6 @@ from selene import browser, have
 
 
 class OnboardingPage:
-
     CKIP_ONBOARDING_BUTTON = "org.wikipedia.alpha:id/fragment_onboarding_skip_button"
     ADD_OR_EDIT_LANGUAGES_BUTTON = "org.wikipedia.alpha:id/addLanguageButton"
     ADD_LANGUAGE_BUTTON = 'text("Add language")'
@@ -53,9 +52,7 @@ class OnboardingPage:
 
     @allure.step("клик по выдаче результатов")
     def result_click(self):
-        browser.element(
-            (AppiumBy.ANDROID_UIAUTOMATOR, self.LANGUAGE_RESULT)
-        ).click()
+        browser.element((AppiumBy.ANDROID_UIAUTOMATOR, self.LANGUAGE_RESULT)).click()
 
         return self
 
@@ -67,8 +64,6 @@ class OnboardingPage:
 
     @allure.step("наличие добавленного языка на начальной странице")
     def assert_available_language(self, value):
-        browser.all((AppiumBy.ID, self.AVAILABLE_LANGUAGE))[1].should(
-            have.text(value)
-        )
+        browser.all((AppiumBy.ID, self.AVAILABLE_LANGUAGE))[1].should(have.text(value))
 
         return self
