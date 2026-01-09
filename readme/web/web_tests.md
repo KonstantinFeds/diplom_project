@@ -55,7 +55,8 @@
 
 - Открыть [джобу](https://jenkins.autotests.cloud/job/DIPLOM_PROJECT_FEDOSEEV/) в jenkins
 - Нажать на кнопку Build with Parameters
-- указать credentials в параметрах selenoid_login, selenoid_password, selenoid_url
+- указать credentials в параметрах selenoid_login, selenoid_password
+- Для прохождения теста на успешную авторизацию на сайте указать web_user_login, web_user_password
 - В select_run_autotests выбрать tests/tests_web
 - Нажать на Build
 
