@@ -68,7 +68,8 @@
 
 * SELENOID_LOGIN
 * SELENOID_PASSWORD
-* SELENOID_URL
+* WEB_USER_LOGIN - для успешного проходения теста на автоизацию в ЛК
+* WEB_USER_PASSWORD - для успешного проходения теста на автоизацию в ЛК
 
 Для запуска тестов через selenoid нужно выполнить следующие шаги:
 
