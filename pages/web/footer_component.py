@@ -6,7 +6,7 @@ class FooterComponent:
     GERMAN_LANGUAGE_BUTTON = '[title = "Немецкий"]'
     ALL_TITLE_NAME_CATALOG = '[class="catalog-tile__name"]'
 
-    @allure.step('применение языка в "футере"')
+    @allure.step('применение языка {language} в "футере"')
     def select_language(self, language: str = "Немецкий"):
         language_button = browser.all(f'[title="{language}"]')
         language_button[1].should(be.visible)
