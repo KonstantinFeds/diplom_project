@@ -82,6 +82,7 @@ allure serve allure-results
 ``` 
 
 Ниже представлен пример allure отчета
+
 <img src="images/screenshots/allure_results.png" width="700" alt="Allure Report for API Tests">
 
 Подробные инструкции по работе с allure можно найти по [ссылке](https://allurereport.org/docs/).
