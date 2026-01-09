@@ -6,7 +6,6 @@ import config
 from utils import attach
 
 
-
 def pytest_addoption(parser):
     """добавляет опцию командной строки --web-context"""
     parser.addoption(
@@ -51,9 +50,7 @@ def browser_management(web_context):
 @pytest.fixture(scope="function")
 def open_site_without_cookies():
 
-    ACCEPT_COOKIES_BUTTON = ".js-message-block__close"
-
-    browser.open_login_page("/")
-    browser.element(ACCEPT_COOKIES_BUTTON).should(be.clickable).click()
+    browser.open("/")
+    browser.element(".js-message-block__close").should(be.clickable).click()
 
     yield

@@ -18,12 +18,12 @@ class CatalogPage:
 
     @allure.step('переход в каталог "Cабвуферы"')
     def open_subwoofer_catalog(self):
-        browser.open_login_page("/catalog/subwoofers/")
+        browser.open("/catalog/subwoofers/")
         return self
 
     @allure.step('переход в каталог "Акустика"')
     def open_dinamiki_catalog(self):
-        browser.open_login_page("/catalog/dinamiki/")
+        browser.open("/catalog/dinamiki/")
         return self
 
     @allure.step('проверка наименования каталога "Cабвуферы"')

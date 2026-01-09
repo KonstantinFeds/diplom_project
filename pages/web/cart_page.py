@@ -27,8 +27,7 @@ class CartPage:
 
     @allure.step('переход в "корзину"')
     def open_cart(self):
-        browser.open_login_page('/personal/cart/')
-        #browser.element(self.CART_BUTTON).click()
+        browser.open('/personal/cart/')
 
         return self
 

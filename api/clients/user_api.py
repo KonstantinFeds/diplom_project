@@ -11,7 +11,6 @@ class UserApiMethods:
 
     @allure.step("создание пользователя")
     def post_create_user_request_body(self, user_payload):
-
         response = requests.request(
             method="POST",
             url=f"{self.api_url}/v2/user/",
@@ -27,7 +26,6 @@ class UserApiMethods:
 
     @allure.step("получение пользователя по username")
     def get_user_by_username(self, username: str):
-
         response = requests.request(
             method="GET",
             url=f"{self.api_url}/v2/user/{username}",
