@@ -1,9 +1,11 @@
 import allure
 
 from pages.web.footer_component import FooterComponent
+from pages.web.product_page import ProductPage
 from pages.web.search_page import SearchPage
 
 search_page = SearchPage()
+product_page = ProductPage()
 footer_page = FooterComponent()
 
 
@@ -11,12 +13,10 @@ footer_page = FooterComponent()
 @allure.title("поиск товара по названию")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_search_by_product_name(open_site_without_cookies):
-    (
-        search_page.click_search_string()
-        .insert_name_product("УРАЛ")
-        .click_on_the_found_product("МОЛНИЯ КВАРК")
-        .assert_name_product("УРАЛ МОЛНИЯ КВАРК\nПортативная акустическая система")
-    )
+    (search_page.click_search_string()
+     .insert_name_product("УРАЛ")
+     .click_on_the_found_product("МОЛНИЯ КВАРК"))
+    product_page.assert_name_product("УРАЛ МОЛНИЯ КВАРК\nПортативная акустическая система")
 
 
 @allure.epic("footer сайта")

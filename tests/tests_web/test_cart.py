@@ -7,7 +7,7 @@ cart_page = CartPage()
 catalog_page = CatalogPage()
 
 
-@allure.epic("добавление товара в корзину")
+@allure.epic("корзина")
 @allure.title("добавление товара в корзину")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_to_cart_product(open_site_without_cookies):
@@ -21,7 +21,7 @@ def test_add_to_cart_product(open_site_without_cookies):
     cart_page.assert_product_positions_count_in_cart(1)
 
 
-@allure.epic("добавление товара в корзину")
+@allure.epic("корзина")
 @allure.title("счетчик кол-ва товара в корзине")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_product_counter_in_cart(open_site_without_cookies):
