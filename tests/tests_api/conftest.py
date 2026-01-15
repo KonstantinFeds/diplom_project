@@ -24,13 +24,26 @@ def headers():
     return headers
 
 
-@allure.title("генерация payload")
+@allure.title("Создание пользователя для тестов")
 @pytest.fixture(scope="function")
-def user_payload():
-    return generate_user_payload()
+def created_user(user_api_client):
+    user_payload = generate_user_payload()
+
+    create_user = user_api_client.post_create_user_request_body(user_payload)
+    assert create_user.status_code == 200
+
+    yield {
+        "payload": user_payload,
+        "username": user_payload["username"],
+        "id": user_payload["id"],
+        "password": user_payload["password"],
+    }
+
+    delete_user = user_api_client.delete_user(user_payload["username"])
+    assert delete_user.status_code == 200
 
 
 @allure.title("API клиент для пользователей")
 @pytest.fixture()
-def user_api(api_url, headers):
+def user_api_client(api_url, headers):
     return UserApiMethods(api_url, headers)
