@@ -12,9 +12,7 @@ class CatalogPage:
     CATALOG_RESULTS_PRODUCTS = '[class="catalog-block__helper"]'
     PRODUCT_PRICE_IN_CATALOG = ".catalog-block__price.catalog-block__price_new"
     CONTINUE_BUYING_BUTTON = ".btn.btn_primary.btn_block.js-modal-close"
-    ADD_TO_CART_BUTTON = (
-        ".catalog-block__btn.btn.btn_primary.btn_sm.js-catalog-block__btn"
-    )
+    ADD_TO_CART_BUTTON = ".js-catalog-block__btn"
 
     @allure.step('переход в каталог "Cабвуферы"')
     def open_subwoofer_catalog(self):
@@ -57,8 +55,9 @@ class CatalogPage:
 
     @allure.step('добавление товара "{product_title}" в корзину')
     def add_product_to_cart(self, product_title):
-        button_locator = f'//a[@class="catalog-block__btn btn btn_primary btn_sm js-catalog-block__btn" and @data-title=" {product_title}"]'
+        button_locator = f'//a[contains(@data-title, "{product_title}")]'
         browser.element(button_locator).click()
+
         time.sleep(0.5)
         browser.element(self.CONTINUE_BUYING_BUTTON).should(be.clickable).click()
 
