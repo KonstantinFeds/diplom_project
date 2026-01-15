@@ -9,7 +9,7 @@ class UserAssertions:
         for key in expected_payload.keys():
             if key in response_body:
                 assert (
-                        response_body[key] == expected_payload[key]
+                    response_body[key] == expected_payload[key]
                 ), f"Не совпадает значение ключа: {key}"
 
     @staticmethod
@@ -17,9 +17,9 @@ class UserAssertions:
     def assert_put_user_response_body(response_body: dict, user_payload: dict):
         expected_message = str(user_payload["id"])
         assert (
-                response_body["code"] == 200
-                and response_body["type"] == "unknown"
-                and response_body["message"] == expected_message
+            response_body["code"] == 200
+            and response_body["type"] == "unknown"
+            and response_body["message"] == expected_message
         )
 
     @staticmethod
@@ -29,8 +29,8 @@ class UserAssertions:
         session_id = message.split(":")[-1]
 
         assert (
-                response_body["code"] == 200
-                and response_body["type"] == "unknown"
-                and response_body["message"] == f"logged in user session:{session_id}"
-                and len(session_id) == 13
+            response_body["code"] == 200
+            and response_body["type"] == "unknown"
+            and response_body["message"] == f"logged in user session:{session_id}"
+            and len(session_id) == 13
         )
