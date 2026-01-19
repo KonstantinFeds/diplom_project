@@ -11,7 +11,7 @@ def pytest_addoption(parser):
     """добавляет опцию командной строки --web-context"""
     parser.addoption(
         "--web-context",
-        default="local_browser",  # значение по умолчанию
+        default="selenoid",  # значение по умолчанию
         help="Specify the test context",
     )
 
